@@ -22,6 +22,7 @@ def add_noise(audio_file, gain):
     noise = gain*np.random.normal(size=num_samples)
     return audio_file + noise
 
+#for some reason, this only works with .wav files
 def load_audio_file(path):
     audio_file, sample_rate = librosa.load(path)
     return audio_file, sample_rate
@@ -32,6 +33,7 @@ def change_to_10_s(audio_file, sample_rate):
     audio_file = audio_file[0:target_len]
     return audio_file
 
+#ignore the warnings when it does melspectrogram
 def spectrogram(audio_file, sample_rate):
     #compute Mel-scaled spectrogram image
     width = audio_file.shape[0]
@@ -58,12 +60,12 @@ def augment_audio_file(source_path):
     path = os.path.splitext(source_path)[0] + '_augmented_noise.wav'
     soundfile.write(path, audio_segment_with_noise, sample_rate)
 
-def audio_to_image(audio_file, destination_folder):
+def audio_to_image(audio_file, sample_rate, destination_folder):
     image_file = destination_folder + '.png'
     audio, sample_rate = load_audio_file(audio_file)
     audio_fixed = change_to_10_s(audio, sr)
     if np.count_nonzero(audio_fixed) != 0:
-        spectro = spectrogram(audio_fixed)
+        spectro = spectrogram(audio_fixed, sample_rate)
         spectro_img = to_png(spectro)
         imageio.imwrite(image_file, spectro_img)
         return spectro
@@ -81,16 +83,17 @@ path2 = './Languages/English_audio/English_test_file_augmented_noise.wav'
 audio, sample = load_audio_file(path1)
 waveshow(audio, sr=sample)
 plt.title('Raw Audio File')
-plt.show()
+#plt.show()
 
 audio_fixed = change_to_10_s(audio, sr)
 waveshow(audio_fixed, sr=sr)
 plt.title('Raw Audio File fixed')
-plt.show()
+#plt.show()
 
 
 spectro = spectrogram(audio_fixed,sr)
 plt.imshow(spectro, origin='lower', aspect='auto')
 plt.title('Spectrogram')
-plt.show()
-spectro.shape
+#plt.show()
+print(spectro.shape) #for now the shape is arbitrary, we need to make it so it's consistent throughout all data
+audio_to_image(path2, sr, './Languages/English/test')
