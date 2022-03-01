@@ -38,7 +38,7 @@ def change_to_10_s(audio_file, sample_rate):
 #ignore the warnings when it does melspectrogram
 def spectrogram(audio_file, sample_rate):
     #compute Mel-scaled spectrogram image
-    print(audio_file.shape)
+    #print(audio_file.shape)
     
     spec = librosa.feature.melspectrogram(audio_file, sr=sample_rate, n_mels=image_height)
     image = librosa.core.power_to_db(spec) #log image
@@ -70,6 +70,7 @@ def audio_to_image(audio_file, sample_rate, destination_folder):
     if np.count_nonzero(audio_fixed) != 0:
         spectro = spectrogram(audio_fixed, sr)
         spectro_img = to_png(spectro)
+        print("Image scales: ", spectro_img.shape)
         #spectro_tuple = (spectro_img,spectro_img,spectro_img)
         #spectro_RGB = np.vstack(spectro_tuple)
         #imageio.imwrite(image_file, spectro_RGB)
@@ -108,4 +109,3 @@ plt.show()
 print(spectro.shape) #for now the shape is arbitrary, we need to make it so it's consistent throughout all data
 '''
 spectro = audio_to_image(path2, sr, './Languages/English/test')
-print(spectro.shape)
