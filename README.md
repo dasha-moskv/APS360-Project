@@ -1,2 +1,6 @@
 # APS360-Project
-Insert summary about project 
+The world has become highly interconnected and is full of diverse cultures and languages. As globalization accelerates, a need for fast and high-quality language translation has emerged to facilitate communication between people. An essential component of language translation is language detection, so that speech can be appropriately parsed and translated. Our objective for this project is to develop a machine learning model which can successfully identify the top ten most commonly spoken languages in the world. The identification of languages requires knowledge and experience with their sound and structure, which are qualities that machine learning models are capable of discerning. 
+
+This project involves the development of a python script which will automatically generate the datasets and apply randomized augmentations. Using an existing technique, we will downsample the audio file, then generate a spectrogram representing the Mel Frequency Cepstral Coefficients (MFCC). The MFCC are a set of features in the frequency spectrum which better characterize the human voice. The result will be a conversion from audio sample to image file representing the spectrogram.
+
+The final model will be a combination of a CNN and a fully connected ANN The output of the CNN will be used as input to an artificial neural network (ANN) with fully connected layers for classification
