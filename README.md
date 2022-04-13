@@ -39,7 +39,7 @@ Figure 4.2.1 Mel-scale spectrogram extraction from audio file [6]
 </p>
 
 ## 5.0 Architecture
-The final model is a combination of a convolutional neural network (CNN) and a fully-connected (FC) artificial neural network (ANN) similar to AlexNet. Since raw speech input is “non-stationary”, i.e. the duration and amplitude of each speech input differs from one to another, in nature, the best way to process data is to extract useful features from the spectrograms using CNNs [7]. The first CNN layers were used to extract short-term time window patterns while the later CNN layers further processed those outputs into high-level patterns. The outputs of the CNN were used as inputs to an ANN with fully connected layers for classification (see Figure 5.1). 
+The final model is a combination of a convolutional neural network (CNN) and a fully-connected (FC) artificial neural network (ANN) similar to AlexNet. Since raw speech input is “non-stationary”, i.e. the duration and amplitude of each speech input differs from one to another, in nature, the best way to process data is to extract useful features from the spectrograms using CNNs [7]. The first CNN layers were used to extract short-term time window patterns while the later CNN layers further processed those outputs into high-level patterns. The outputs of the CNN were used as inputs to an ANN with fully connected layers for classification (see Figure 5.1).
 
 <p align="center">
 <img src=/Research/Screenshot_3.png>	
@@ -70,7 +70,7 @@ Figure 6.1: Error and loss graphs for baseline model
 </p>
 
 ## 7.0 Quantitative Results
-We present the validation and test accuracies of our baseline and final models as measures of its performance on the dataset. As described in Section 6.0, our baseline model achieved an 81% accuracy on the validation set and a 78% accuracy on the test set. However, investigating the error in Figure 6.1 reveals that the model began to overfit quickly, with the error becoming close to 0 at epoch 6. Figure 7.1 presents our accuracies for our final model based on the AlexNet architecture. We were able to achieve a validation accuracy of 89% with this architecture, and a test set accuracy of 87%. This indicates that our final model is performing as expected and better than the baseline model. 
+We present the validation and test accuracies of our baseline and final models as measures of its performance on the dataset. As described in Section 6.0, our baseline model achieved an 81% accuracy on the validation set and a 78% accuracy on the test set. However, investigating the error in Figure 6.1 reveals that the model began to overfit quickly, with the error becoming close to 0 at epoch 6. Figure 7.1 presents our accuracies for our final model based on the AlexNet architecture. We were able to achieve a validation accuracy of 89% with this architecture, and a test set accuracy of 87%. This indicates that our final model is performing as expected and better than the baseline model.
 
 <p align="center">
 <img src=/Research/Screenshot_5.png>	
@@ -129,12 +129,12 @@ We considered consent and data privacy throughout the project. We used speech sa
 
 Another important ethical consideration is a source of representation bias. In the Mozilla CommonVoice dataset, some languages, such as Japanese, had a roughly equal distribution of male and female voices. However, most languages had a skewed distribution towards male voices. To achieve better results moving forward, we should also ensure that different accents and speech patterns are equally represented in the dataset.
 
-### 12.0 Project Difficulty/Quality 
+## 12.0 Project Difficulty/Quality 
 Our group faced many obstacles while collecting, building, and training the model. According to [10], a vast amount of data is necessary to achieve a decent accuracy on the classification of languages. Our data consists of about 9000 clips for each language, which amounted to approximately 90000 clips total. This alone amounted to just over 3 GBs of data. Then since we had to transform these sound files into .png spectrograms, another 4.4 GBs of data were added to the dataset. The size of the data collection made it hard to push and pull from Github due to technological constraints such as slow internet or insufficient local storage space. 
 
 Another obstacle we faced was the training time for hyperparameter tuning. Since we had a large amount of data and a large neural network with multiple layers (refer to Section 5.0), training took 2 hours to complete each time. One way we circumvented this problem was by saving the model at each epoch and stopping the training at the first sign of overfitting. However, due to the size of our neural network, the saved model storage space became a tradeoff. 
 
-For our final model, we could have imported a pretrained AlexNet to classify the spectrograms. However, we discovered that the model would overfit very quickly at a very low accuracy (20%~30%). One reason for this result is that a pretrained AlexNet, trained with the dataset ImageNet, could only classify images of animals/objects in everyday life and does poorly on abstract images like spectrograms. Hence, we trained our own model following the architecture of AlexNet, making our project meaningful. Given the complexity and length of the project, we are satisfied with the quality of our final model. The complete project can be found at the Github link present in the cover page of this document. 
+For our final model, we could have imported a pretrained AlexNet to classify the spectrograms. However, we discovered that the model would overfit very quickly at a very low accuracy (20%~30%). One reason for this result is that a pretrained AlexNet, trained with the dataset ImageNet, could only classify images of animals/objects in everyday life and does poorly on abstract images like spectrograms. Hence, we trained our own model following the architecture of AlexNet. Given the complexity and length of the project, we are satisfied with the quality of our final model. The complete project can be found at the Github link present in the cover page of this document. 
 
 ## 13.0 References
 |                                              |                                          |
